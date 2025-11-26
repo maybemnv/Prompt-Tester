@@ -2,6 +2,7 @@ import { useState } from 'react'
 import PromptInput from './components/PromptInput'
 import CategorySection from './components/CategorySection'
 import LoadingScanner from './components/LoadingScanner'
+import SparkleIcon from './components/SparkleIcon'
 import { generateStressTests } from './utils/api'
 import type { StressTestResults } from './types'
 import './App.css'
@@ -27,51 +28,86 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4">
-            ⚡ AI Prompt Stress Tester
+    <div className="min-h-screen bg-white">
+      {/* Top Navigation */}
+      <nav className="border-b border-gray-200" style={{ borderBottomWidth: '1px' }}>
+        <div className="container-centered py-4">
+          <h1 className="text-2xl font-bold" style={{ letterSpacing: '-0.02em' }}>
+            <span style={{ color: '#1a1a1a' }}>Prompt</span>
+            <span style={{ color: '#e85d3c' }}>Test</span>
           </h1>
-          <p className="text-slate-400 text-lg">
-            Test your prompts against jailbreaks, adversarial attacks, and edge cases
-          </p>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="container-centered py-16">
+        {/* Main Card */}
+        <div className="card max-w-3xl mx-auto relative" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+          {/* Decorative Sparkles */}
+          <div className="absolute -left-12 top-8 hidden md:block">
+            <SparkleIcon size="md" color="#e85d3c" animate />
+          </div>
+          <div className="absolute -right-10 top-20 hidden md:block">
+            <SparkleIcon size="sm" color="#f4a261" animate />
+          </div>
+
+          {/* Card Header */}
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold mb-3" style={{ color: '#1a1a1a', letterSpacing: '-0.02em' }}>
+              Prompt-friendly stress testing
+            </h2>
+            <p className="text-secondary text-base max-w-xl mx-auto">
+              Test your prompts against jailbreaks, adversarial attacks, and edge cases.
+              Useful for validating any LLM system prompt.
+            </p>
+          </div>
+
+          {/* Input Form - No wrapper, direct integration */}
+          <PromptInput onGenerate={handleGenerate} disabled={loading} />
+
+          {/* Error Display */}
+          {error && (
+            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg animate-fade-in">
+              <p className="text-red-600 font-medium text-sm">⚠️ {error}</p>
+            </div>
+          )}
+
+          {/* Loading State */}
+          {loading && (
+            <div className="mt-8">
+              <LoadingScanner />
+            </div>
+          )}
         </div>
 
-        {/* Input Section */}
-        <PromptInput onGenerate={handleGenerate} disabled={loading} />
-
-        {/* Error Display */}
-        {error && (
-          <div className="mt-8 p-4 bg-red-500/10 border border-red-500/50 rounded-lg">
-            <p className="text-red-400">{error}</p>
-          </div>
-        )}
-
-        {/* Loading State */}
-        {loading && <LoadingScanner />}
-
-        {/* Results */}
+        {/* Results Section - Outside the main card */}
         {results && !loading && (
-          <div className="mt-12">
+          <div className="mt-12 animate-fade-in max-w-6xl mx-auto">
             {/* Summary Stats */}
-            <div className="grid grid-cols-4 gap-4 mb-8">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-                <div className="text-3xl font-bold text-white">{results.summary.total}</div>
-                <div className="text-slate-400 text-sm">Total Tests</div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              <div className="card-white text-center">
+                <div className="text-3xl font-bold mb-1" style={{ color: '#1a1a1a' }}>
+                  {results.summary.total}
+                </div>
+                <div className="text-secondary text-xs font-medium uppercase tracking-wide">Total Tests</div>
               </div>
-              <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-red-400">{results.summary.breaks}</div>
-                <div className="text-slate-400 text-sm">Breaks</div>
+              <div className="card-white text-center">
+                <div className="text-3xl font-bold mb-1" style={{ color: '#dc2626' }}>
+                  {results.summary.breaks}
+                </div>
+                <div className="text-secondary text-xs font-medium uppercase tracking-wide">Breaks</div>
               </div>
-              <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-yellow-400">{results.summary.risky}</div>
-                <div className="text-slate-400 text-sm">Risky</div>
+              <div className="card-white text-center">
+                <div className="text-3xl font-bold mb-1" style={{ color: '#f59e0b' }}>
+                  {results.summary.risky}
+                </div>
+                <div className="text-secondary text-xs font-medium uppercase tracking-wide">Risky</div>
               </div>
-              <div className="bg-green-500/10 border border-green-500/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-green-400">{results.summary.safe}</div>
-                <div className="text-slate-400 text-sm">Safe</div>
+              <div className="card-white text-center">
+                <div className="text-3xl font-bold mb-1" style={{ color: '#10b981' }}>
+                  {results.summary.safe}
+                </div>
+                <div className="text-secondary text-xs font-medium uppercase tracking-wide">Safe</div>
               </div>
             </div>
 
