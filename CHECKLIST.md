@@ -23,11 +23,13 @@
 ## 🏗️ Architecture
 
 ### Backend Structure
-- [x] `server.js` - Express app with CORS
-- [x] `routes/stressTest.js` - API endpoint
-- [x] `services/mutationGenerator.js` - 25 mutations
-- [x] `services/riskEvaluator.js` - AI + heuristic eval
-- [x] `test-mutations.js` - Test script
+- [x] `src/server.ts` - Express app with CORS
+- [x] `src/routes/stressTest.ts` - API endpoint
+- [x] `src/services/mutationGenerator.ts` - 25 mutations
+- [x] `src/services/riskEvaluator.ts` - AI + heuristic eval
+- [x] `src/types.ts` - TypeScript interfaces
+- [x] `src/test-mutations.ts` - Test script
+- [x] `tsconfig.json` - TypeScript configuration
 - [x] `.env.example` - Configuration template
 
 ### Frontend Structure
@@ -89,7 +91,8 @@
 ## 🧪 Testing
 
 ### Manual Tests
-- [x] Backend mutation generation (`node test-mutations.js`)
+- [x] Backend mutation generation (`node dist/test-mutations.js`)
+- [x] Backend TypeScript compilation
 - [x] Backend dependencies installed
 - [x] Frontend dependencies installed
 - [x] No TypeScript errors
@@ -130,9 +133,9 @@
 ## 📊 Project Stats
 
 ### Code Files
-- Backend: 5 files (server, routes, 2 services, test)
-- Frontend: 8 files (App, 4 components, utils, types, main)
-- Total: 13 core files
+- Backend: 6 TypeScript files (server, routes, 2 services, types, test)
+- Frontend: 8 TypeScript files (App, 4 components, utils, types, main)
+- Total: 14 core files
 
 ### Lines of Code (Estimated)
 - Backend: ~400 lines

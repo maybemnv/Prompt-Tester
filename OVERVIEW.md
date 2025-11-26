@@ -111,10 +111,10 @@ Input Prompt
 Frontend                Backend                 AI/ML
 ────────────────────   ────────────────────   ────────────────────
 React 19               Node.js 18+            AWS Bedrock
-TypeScript             Express 5              Claude 3 Haiku
-Vite                   AWS SDK                
-Tailwind CSS 4         ES Modules             
-Axios                  CORS                   
+TypeScript             TypeScript             Claude 3 Haiku
+Vite                   Express 5              
+Tailwind CSS 4         AWS SDK                
+Axios                  ES Modules             
 ```
 
 ## 🚀 Quick Start
@@ -125,7 +125,7 @@ cd backend && npm install
 cd ../frontend && npm install
 
 # 2. Start backend (Terminal 1)
-cd backend && npm start
+cd backend && npm run dev
 # → Server running at http://localhost:5000
 
 # 3. Start frontend (Terminal 2)
@@ -150,13 +150,15 @@ ai-prompt-stress-tester/
 │   ├── DEPLOYMENT.md         ← Production
 │   └── CHECKLIST.md          ← Status
 │
-├── 🔧 Backend
-│   ├── server.js             ← Express app
-│   ├── routes/
-│   │   └── stressTest.js     ← API endpoint
-│   └── services/
-│       ├── mutationGenerator.js  ← 25 mutations
-│       └── riskEvaluator.js      ← AI evaluation
+├── 🔧 Backend (TypeScript)
+│   └── src/
+│       ├── server.ts         ← Express app
+│       ├── types.ts          ← Type definitions
+│       ├── routes/
+│       │   └── stressTest.ts ← API endpoint
+│       └── services/
+│           ├── mutationGenerator.ts  ← 25 mutations
+│           └── riskEvaluator.ts      ← AI evaluation
 │
 └── 🎨 Frontend
     └── src/

@@ -3,7 +3,7 @@ echo Starting AI Prompt Stress Tester...
 echo.
 
 echo [1/2] Starting Backend Server...
-start "Backend Server" cmd /k "cd backend && npm start"
+start "Backend Server" cmd /k "cd backend && npm run dev"
 
 timeout /t 3 /nobreak > nul
 

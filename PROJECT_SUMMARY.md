@@ -214,7 +214,8 @@ VITE_API_URL=http://localhost:5000
 ### Test Mutation Generation
 ```bash
 cd backend
-node test-mutations.js
+npm run build
+node dist/test-mutations.js
 ```
 
 ### Test Full Flow
@@ -329,8 +330,10 @@ User can copy mutations for testing
 
 ### Backend
 ```bash
-npm start              # Start server
-node test-mutations.js # Test mutations
+npm run dev           # Start dev server (with watch)
+npm run build         # Build TypeScript
+npm start             # Start production server
+node dist/test-mutations.js # Test mutations
 npm install           # Install deps
 ```
 

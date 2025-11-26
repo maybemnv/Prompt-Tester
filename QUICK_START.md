@@ -103,7 +103,8 @@ npm run dev
 Test mutation generation:
 ```bash
 cd backend
-node test-mutations.js
+npm run build
+node dist/test-mutations.js
 ```
 
 Should output 25 mutations across 4 categories.
@@ -139,8 +140,10 @@ Should output 25 mutations across 4 categories.
 
 ```bash
 # Backend
-npm start              # Start server
-node test-mutations.js # Test mutation generation
+npm run dev           # Start dev server (with watch)
+npm run build         # Build TypeScript
+npm start             # Start production server
+node dist/test-mutations.js # Test mutations
 
 # Frontend
 npm run dev           # Start dev server
