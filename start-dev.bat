@@ -2,8 +2,8 @@
 echo Starting AI Prompt Stress Tester...
 echo.
 
-echo [1/2] Starting Backend Server...
-start "Backend Server" cmd /k "cd backend && npm run dev"
+echo [1/2] Starting Backend Server (Python)...
+start "Backend Server" cmd /k "cd backend-python && .venv\Scripts\activate && python run.py"
 
 timeout /t 3 /nobreak > nul
 

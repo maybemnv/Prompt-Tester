@@ -35,3 +35,17 @@ coverage/
 
 # Misc
 *.tsbuildinfo
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+venv/
+ENV/
+env/
+.uv/
+*.egg-info/
+dist/
+build/
