@@ -1,7 +1,5 @@
 # Dependencies
 node_modules/
-*/node_modules/
-
 # Environment variables
 .env
 .env.local
@@ -12,7 +10,8 @@ dist/
 build/
 */dist/
 */build/
-
+docs/
+.kiro/
 # Logs
 *.log
 npm-debug.log*
@@ -35,6 +34,8 @@ coverage/
 
 # Misc
 *.tsbuildinfo
+
+#Python
 __pycache__/
 *.py[cod]
 *$py.class
