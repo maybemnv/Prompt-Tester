@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { toast } from "@/hooks/use-toast";
-import type { RiskLevel, MutationCategory } from "@/lib/mock-data";
+import type { RiskLevel, MutationCategory } from "@/types";
 
 const riskConfig: Record<RiskLevel, { label: string; className: string }> = {
   break: { label: "Break", className: "bg-destructive text-destructive-foreground" },

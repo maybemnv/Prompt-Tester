@@ -5,7 +5,9 @@ import { ScannerLoader } from "@/components/ScannerLoader";
 import { SummaryBar } from "@/components/SummaryBar";
 import { CategorySection } from "@/components/CategorySection";
 import { useTheme } from "@/hooks/use-theme";
-import { generateMockResults, type StressTestResult } from "@/lib/mock-data";
+import { generateStressTests, type StressTestResponse } from "@/lib/api";
+import { mapApiResponseToUiData } from "@/lib/transform";
+import type { StressTestResult } from "@/types";
 
 const Index = () => {
   const { dark, toggle } = useTheme();
@@ -13,14 +15,22 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<StressTestResult | null>(null);
 
-  const runTest = () => {
+  const runTest = async () => {
+    if (!prompt.trim()) return;
+
     setLoading(true);
     setResults(null);
-    const delay = 2000 + Math.random() * 1000;
-    setTimeout(() => {
-      setResults(generateMockResults(prompt));
+
+    try {
+      const response = await generateStressTests({ prompt });
+      const transformedResults = mapApiResponseToUiData(response);
+      setResults(transformedResults);
+    } catch (error) {
+      console.error('Error generating stress tests:', error);
+      // Optionally show an error message to the user
+    } finally {
       setLoading(false);
-    }, delay);
+    }
   };
 
   return (
